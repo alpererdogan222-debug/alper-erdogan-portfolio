@@ -49,7 +49,7 @@
             transition: all 0.4s ease;
         }
         nav.scrolled {
-            background: rgba(2, 12, 24, 0.92);
+            background: rgba(2, 12, 24, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             padding: 0.8rem 3rem;
@@ -74,6 +74,30 @@
             text-transform: uppercase;
         }
         .nav-links a:hover { color: var(--accent); }
+
+        /* ─── HAMBURGER ─── */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            padding: 9px 11px;
+            z-index: 1002;
+        }
+        .hamburger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--text-1);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
         /* ─── HERO ─── */
         #hero {
@@ -162,6 +186,9 @@
             transition: all 0.3s ease;
             letter-spacing: 0.08em;
             text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
         }
         .btn-primary {
             background: var(--accent);
@@ -181,6 +208,16 @@
         .btn-outline:hover {
             border-color: var(--accent);
             color: var(--accent);
+        }
+        .btn-download {
+            background: transparent;
+            color: var(--accent-2);
+            border: 2px solid rgba(255, 107, 53, 0.45);
+        }
+        .btn-download:hover {
+            background: rgba(255, 107, 53, 0.08);
+            border-color: var(--accent-2);
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.2);
         }
         .scroll-hint {
             position: absolute;
@@ -238,17 +275,39 @@
             line-height: 1.15;
         }
         .section-title span { color: var(--accent); }
-
-        .section-bg {
-            background: var(--bg-1);
-        }
+        .section-bg { background: var(--bg-1); }
 
         /* ─── ABOUT ─── */
         .about-grid {
             display: grid;
-            grid-template-columns: 3fr 2fr;
-            gap: 5rem;
+            grid-template-columns: 220px 1fr 280px;
+            gap: 4rem;
+            align-items: start;
+        }
+        .profile-photo-wrap {
+            display: flex;
+            flex-direction: column;
             align-items: center;
+            gap: 1rem;
+            padding-top: 0.5rem;
+        }
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 10%;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 40px rgba(0, 200, 255, 0.25), 0 0 80px rgba(0, 200, 255, 0.08);
+            display: block;
+        }
+        .profile-photo-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            letter-spacing: 0.12em;
+            text-align: center;
+            text-transform: uppercase;
         }
         .about-text p {
             color: var(--text-2);
@@ -406,9 +465,7 @@
             padding: 1.75rem 2rem;
             transition: all 0.3s ease;
         }
-        .timeline-header:hover {
-            border-color: rgba(0, 200, 255, 0.3);
-        }
+        .timeline-header:hover { border-color: rgba(0, 200, 255, 0.3); }
         .timeline-top {
             display: flex;
             justify-content: space-between;
@@ -501,10 +558,7 @@
             background: radial-gradient(circle, rgba(0, 200, 255, 0.08) 0%, transparent 70%);
             pointer-events: none;
         }
-        .project-icon {
-            font-size: 2.2rem;
-            margin-bottom: 1.4rem;
-        }
+        .project-icon { font-size: 2.2rem; margin-bottom: 1.4rem; }
         .project-label {
             font-size: 0.68rem;
             color: var(--accent-2);
@@ -531,11 +585,7 @@
             margin-bottom: 1.5rem;
             flex: 1;
         }
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
         .tag {
             font-size: 0.7rem;
             color: var(--text-3);
@@ -582,45 +632,33 @@
             letter-spacing: 0.15em;
             text-transform: uppercase;
         }
-        .skill-item {
-            margin-bottom: 1.1rem;
-        }
-        .skill-item:last-child { margin-bottom: 0; }
-        .skill-row {
+
+        /* Dot rating system */
+        .skill-rated {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 0.4rem;
+            align-items: center;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
         }
-        .skill-name { font-size: 0.85rem; color: var(--text-2); }
-        .skill-pct {
-            font-size: 0.72rem;
-            color: var(--text-3);
-            font-family: 'JetBrains Mono', monospace;
+        .skill-rated:last-child { border-bottom: none; }
+        .skill-rated-name { font-size: 0.85rem; color: var(--text-2); }
+        .skill-dots { display: flex; gap: 5px; }
+        .dot {
+            width: 9px; height: 9px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
         }
-        .skill-bar {
-            height: 3px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 2px;
-            overflow: hidden;
+        .dot.on { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 6px rgba(0,200,255,0.5); }
+        .dot.on-o { background: var(--accent-2); border-color: var(--accent-2); box-shadow: 0 0 6px rgba(255,107,53,0.5); }
+        .dot.on-g { background: var(--accent-3); border-color: var(--accent-3); box-shadow: 0 0 6px rgba(0,229,160,0.5); }
+
+        .skill-sub-head {
+            margin-top: 1.75rem;
+            margin-bottom: 1rem;
         }
-        .skill-fill {
-            height: 100%;
-            border-radius: 2px;
-            background: linear-gradient(90deg, var(--accent), rgba(0,200,255,0.5));
-            width: 0;
-            transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .skill-fill.orange {
-            background: linear-gradient(90deg, var(--accent-2), rgba(255,107,53,0.5));
-        }
-        .skill-fill.green {
-            background: linear-gradient(90deg, var(--accent-3), rgba(0,229,160,0.5));
-        }
-        .skill-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
+        .skill-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
         .chip {
             font-size: 0.78rem;
             color: var(--text-2);
@@ -628,6 +666,12 @@
             border: 1px solid rgba(0, 200, 255, 0.15);
             padding: 0.3rem 0.8rem;
             border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .chip:hover {
+            background: rgba(0, 200, 255, 0.12);
+            border-color: rgba(0, 200, 255, 0.3);
+            color: var(--text-1);
         }
 
         /* ─── CERTIFICATIONS ─── */
@@ -670,10 +714,7 @@
             margin-bottom: 0.3rem;
             line-height: 1.4;
         }
-        .cert-by {
-            font-size: 0.78rem;
-            color: var(--text-3);
-        }
+        .cert-by { font-size: 0.78rem; color: var(--text-3); }
 
         /* ─── CONTACT ─── */
         .contact-wrapper {
@@ -688,11 +729,7 @@
             margin-bottom: 2.5rem;
             font-size: 1rem;
         }
-        .contact-links {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
+        .contact-links { display: flex; flex-direction: column; gap: 1rem; }
         .contact-link {
             display: flex;
             align-items: center;
@@ -729,16 +766,8 @@
             border-radius: 16px;
             padding: 3rem;
         }
-        .contact-card-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        .contact-card-sub {
-            color: var(--text-3);
-            font-size: 0.85rem;
-            margin-bottom: 2rem;
-        }
+        .contact-card-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .contact-card-sub { color: var(--text-3); font-size: 0.85rem; margin-bottom: 2rem; }
         .info-row {
             display: flex;
             gap: 0.75rem;
@@ -766,11 +795,7 @@
             flex-wrap: wrap;
             gap: 1rem;
         }
-        footer p {
-            color: var(--text-3);
-            font-size: 0.8rem;
-            font-family: 'JetBrains Mono', monospace;
-        }
+        footer p { color: var(--text-3); font-size: 0.8rem; font-family: 'JetBrains Mono', monospace; }
         .footer-accent { color: var(--accent); }
 
         /* ─── ANIMATIONS ─── */
@@ -791,20 +816,36 @@
         .reveal.stagger-1 { transition-delay: 0.1s; }
         .reveal.stagger-2 { transition-delay: 0.2s; }
         .reveal.stagger-3 { transition-delay: 0.3s; }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
 
         /* ─── RESPONSIVE ─── */
         @media (max-width: 900px) {
-            .about-grid,
+            .hamburger { display: flex; }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(2, 12, 24, 0.97);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2.5rem;
+                z-index: 1001;
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a { font-size: 1.4rem; letter-spacing: 0.15em; }
+            nav { padding: 1rem 1.5rem; }
+            nav.scrolled { padding: 0.8rem 1.5rem; }
+
+            .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .profile-photo-wrap { margin: 0 auto; }
+
             .contact-wrapper { grid-template-columns: 1fr; gap: 3rem; }
             .edu-grid,
             .projects-grid,
             .skills-grid,
             .cert-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
             .wrapper { padding: 5rem 1.5rem; }
             .timeline { padding-left: 2rem; }
         }
@@ -815,7 +856,7 @@
 <!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
 <nav id="navbar">
     <a href="#hero" class="nav-logo">AE<span>.dev</span></a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#experience">Experience</a></li>
@@ -823,6 +864,9 @@
         <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+    </button>
 </nav>
 
 <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
@@ -835,10 +879,11 @@
             <span class="first">Alper</span>
             <span class="last">Erdoğan</span>
         </h1>
-        <p class="hero-title">CAE Specialist · International Business Professional · ANSYS Expert</p>
-        <p class="hero-subtitle">// Trakya University · GPA 3.01 · Edirne, Turkey</p>
+        <p class="hero-title">CAE Specialist · Renewable Energy · ANSYS Expert</p>
+        <p class="hero-subtitle">// Trakya University · GPA 3.00 · Istanbul, Turkey</p>
         <div class="hero-buttons">
             <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="AlperErdogan_CV.pdf" download class="btn btn-download"><i class="fas fa-download"></i> Download CV</a>
             <a href="#contact" class="btn btn-outline">Contact Me</a>
         </div>
     </div>
@@ -856,43 +901,50 @@
         <h2 class="section-title">Who I <span>Am</span></h2>
     </div>
     <div class="about-grid">
+
+        <div class="profile-photo-wrap reveal">
+            <img src="profile.jpg" alt="Alper Erdoğan" class="profile-photo">
+            <span class="profile-photo-name">// Alper Erdoğan</span>
+        </div>
+
         <div class="about-text reveal stagger-1">
             <p>
-                I am a senior Mechanical Engineering student at Trakya University, specializing in
+                I am a Mechanical Engineering graduate from Trakya University, specializing in
                 Computer-Aided Engineering (CAE) simulations using the ANSYS ecosystem. My academic
                 work spans thermal, structural, and explicit dynamics analyses across real-world
                 engineering challenges.
             </p>
             <p>
-                Beyond engineering, I bring strong international business experience gained through
-                years of hands-on work in the USA — managing wholesale operations, executing large-scale
-                exhibition sales, and building international client relationships across the gem and
-                mineral industry.
+                My technical foundation includes ANSYS Fluent for CFD analysis, Static Structural for
+                FEA, and Explicit Dynamics for high-strain-rate impact simulations. I have also completed
+                specializations in Photovoltaic Solar Energy Systems and AutoCAD 3D Modeling.
             </p>
             <p>
-                I combine a technical engineering mindset with entrepreneurial drive, advanced English
-                fluency, and proficiency in modern AI-powered development tools — enabling me to bridge
-                the gap between precision engineering and business execution.
+                Beyond engineering, I bring strong international business experience — managing wholesale
+                operations, executing large-scale exhibition sales at world-class venues, and building
+                international client relationships across the USA gem and mineral industry for over 5 years.
             </p>
         </div>
+
         <div class="about-stats reveal stagger-2">
             <div class="stat-card">
-                <span class="stat-number">3.01</span>
+                <span class="stat-number">3.00</span>
                 <div class="stat-label">GPA / 4.00</div>
             </div>
             <div class="stat-card">
                 <span class="stat-number">5+</span>
-                <div class="stat-label">Years USA Experience</div>
+                <div class="stat-label">USA Experience</div>
             </div>
             <div class="stat-card">
                 <span class="stat-number">3</span>
                 <div class="stat-label">ANSYS Projects</div>
             </div>
             <div class="stat-card">
-                <span class="stat-number">C1</span>
+                <span class="stat-number">B2</span>
                 <div class="stat-label">English Level</div>
             </div>
         </div>
+
     </div>
 </div>
 </div>
@@ -908,19 +960,19 @@
             <div class="edu-icon"><i class="fas fa-university"></i></div>
             <div class="edu-degree">Mechanical Engineering (English Medium)</div>
             <div class="edu-school">Trakya University</div>
-            <div class="edu-meta"><i class="fas fa-map-marker-alt"></i> Edirne, Turkey</div>
+            <div class="edu-meta"><i class="fas fa-map-marker-alt"></i> Edirne, Turkey · 2021 – 2026</div>
             <ul class="edu-details">
-                <li><i class="fas fa-circle"></i> Status: Senior Student — Graduation Expected Soon</li>
-                <li><i class="fas fa-circle"></i> GPA: 3.01 / 4.00</li>
+                <li><i class="fas fa-circle"></i> GPA: 3.00 / 4.00</li>
                 <li><i class="fas fa-circle"></i> Language of Instruction: English</li>
                 <li><i class="fas fa-circle"></i> Focus: CAE, Simulation, Structural &amp; Thermal Analysis</li>
+                <li><i class="fas fa-circle"></i> Graduation: 2026</li>
             </ul>
         </div>
         <div class="edu-card reveal stagger-2">
             <div class="edu-icon"><i class="fas fa-school"></i></div>
             <div class="edu-degree">Multi-Program Anatolian High School</div>
             <div class="edu-school">Kağıthane Anatolian High School</div>
-            <div class="edu-meta"><i class="fas fa-map-marker-alt"></i> Istanbul, Turkey</div>
+            <div class="edu-meta"><i class="fas fa-map-marker-alt"></i> Istanbul, Turkey · 2016 – 2020</div>
             <ul class="edu-details">
                 <li><i class="fas fa-circle"></i> Graduation Grade: 83.09 / 100</li>
                 <li><i class="fas fa-circle"></i> Multi-Program Curriculum</li>
@@ -938,7 +990,6 @@
     </div>
     <div class="timeline">
 
-        <!-- Item 1 -->
         <div class="timeline-item reveal">
             <div class="timeline-dot"></div>
             <div class="timeline-header">
@@ -960,7 +1011,6 @@
             </div>
         </div>
 
-        <!-- Item 2 -->
         <div class="timeline-item reveal stagger-1">
             <div class="timeline-dot"></div>
             <div class="timeline-header">
@@ -981,13 +1031,12 @@
             </div>
         </div>
 
-        <!-- Item 3 -->
         <div class="timeline-item reveal stagger-2">
             <div class="timeline-dot"></div>
             <div class="timeline-header">
                 <div class="timeline-top">
                     <div class="timeline-company">Emel Elektrik</div>
-                    <div class="timeline-badge">Volunteer Intern · 1 Year</div>
+                    <div class="timeline-badge">Volunteer Intern · 2021–2022</div>
                 </div>
                 <div class="timeline-role">Electrical Systems Volunteer Intern</div>
                 <div class="timeline-loc">
@@ -995,8 +1044,8 @@
                     Edirne, Turkey
                 </div>
                 <ul class="timeline-desc">
-                    <li>On-site observation and hands-on application of electrical theory practices within a real operational environment.</li>
-                    <li>Gained a comprehensive understanding of sector operations and achieved technical development in renewable energy systems, including photovoltaic and grid systems.</li>
+                    <li>Completed a one-year volunteer internship at a local electricity company while pursuing my renewable energy specialization at KTO Karatay University.</li>
+                    <li>Gained hands-on experience with field applications and machine maintenance procedures, with direct exposure to photovoltaic and grid-connected renewable energy systems.</li>
                 </ul>
             </div>
         </div>
@@ -1017,11 +1066,12 @@
             <div class="project-glow"></div>
             <div class="project-icon">🌡️</div>
             <div class="project-label">Thermal · CFD</div>
-            <div class="project-title">Thermal Analysis of an Automobile Radiator</div>
+            <div class="project-title">Cooling Efficiency Analysis of an Automobile Radiator</div>
             <p class="project-desc">
-                Conducted thermal simulation of water flow within a radiator to compare heat transfer
-                performance across different material constructions. Heat distribution and fluid dynamics
-                analyses were resolved to determine optimal material selection for maximum efficiency.
+                Used the ANSYS Fluent Flow module to calculate and compare the cooling efficiency of a
+                car radiator across three different materials — gold, aluminum, and titanium — with a
+                single working fluid. Thermal distribution and fluid flow behavior were analyzed to
+                determine the optimal material for maximum heat dissipation performance.
             </p>
             <div class="project-tags">
                 <span class="tag">ANSYS Fluent</span>
@@ -1036,17 +1086,19 @@
             <div class="project-glow"></div>
             <div class="project-icon">⚙️</div>
             <div class="project-label">Structural · FEA</div>
-            <div class="project-title">Design &amp; Structural Analysis of a Chain Conveyor</div>
+            <div class="project-title">Structural Analysis of a Slat Chain Conveyor System</div>
             <p class="project-desc">
-                Designed an industrial slat chain conveyor system with 300 kg load capacity operating
-                at 1 m/s. Verified mechanical behavior of the structural frame and conveyor slats,
-                including stress and deformation analyses under full operational load.
+                Performed load-bearing analysis of a slat chain conveyor system installed on a 7-meter
+                track, driven by a 2.2 kW motor, designed to carry 6 boxes each weighing 50 kg. The
+                static structural module in ANSYS was used to evaluate stress distribution, deformation,
+                and safety factors under full operational load.
             </p>
             <div class="project-tags">
                 <span class="tag">ANSYS Static Structural</span>
                 <span class="tag">FEA</span>
                 <span class="tag">Stress Analysis</span>
-                <span class="tag">300 kg Load</span>
+                <span class="tag">2.2 kW Motor</span>
+                <span class="tag">7m Track</span>
             </div>
         </div>
 
@@ -1081,90 +1133,109 @@
     </div>
     <div class="skills-grid">
 
+        <!-- Group 1: CAE Software -->
         <div class="skill-group reveal stagger-1">
             <div class="skill-group-head">
                 <div class="skill-group-icon"><i class="fas fa-cogs"></i></div>
-                <div class="skill-group-title">Engineering Software</div>
+                <div class="skill-group-title">Simulation &amp; CAE</div>
             </div>
-            <div class="skill-item">
-                <div class="skill-row"><span class="skill-name">ANSYS Fluent (CFD)</span><span class="skill-pct">90%</span></div>
-                <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+            <div class="skill-rated">
+                <span class="skill-rated-name">ANSYS Fluent (CFD)</span>
+                <div class="skill-dots">
+                    <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
             </div>
-            <div class="skill-item">
-                <div class="skill-row"><span class="skill-name">ANSYS Static Structural</span><span class="skill-pct">90%</span></div>
-                <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+            <div class="skill-rated">
+                <span class="skill-rated-name">ANSYS Static Structural</span>
+                <div class="skill-dots">
+                    <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
             </div>
-            <div class="skill-item">
-                <div class="skill-row"><span class="skill-name">ANSYS Explicit Dynamics</span><span class="skill-pct">85%</span></div>
-                <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+            <div class="skill-rated">
+                <span class="skill-rated-name">ANSYS Explicit Dynamics</span>
+                <div class="skill-dots">
+                    <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
             </div>
-            <div class="skill-item">
-                <div class="skill-row"><span class="skill-name">LS-DYNA</span><span class="skill-pct">80%</span></div>
-                <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+            <div class="skill-rated">
+                <span class="skill-rated-name">LS-DYNA / AUTODYN</span>
+                <div class="skill-dots">
+                    <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
             </div>
-            <div class="skill-item">
-                <div class="skill-row"><span class="skill-name">AUTODYN</span><span class="skill-pct">80%</span></div>
-                <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-row"><span class="skill-name">AutoCAD (3D Modeling)</span><span class="skill-pct">85%</span></div>
-                <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+            <div class="skill-rated">
+                <span class="skill-rated-name">AutoCAD 3D Modeling</span>
+                <div class="skill-dots">
+                    <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
+                </div>
             </div>
         </div>
 
+        <!-- Group 2: Technical Knowledge -->
         <div class="skill-group reveal stagger-2">
             <div class="skill-group-head">
-                <div class="skill-group-icon"><i class="fas fa-language"></i></div>
-                <div class="skill-group-title">Languages &amp; Communication</div>
+                <div class="skill-group-icon"><i class="fas fa-solar-panel"></i></div>
+                <div class="skill-group-title">Technical Expertise</div>
             </div>
-            <div class="skill-item">
-                <div class="skill-row"><span class="skill-name">English (Professional)</span><span class="skill-pct">95%</span></div>
-                <div class="skill-bar"><div class="skill-fill orange" data-width="95"></div></div>
+            <div class="skill-chips">
+                <span class="chip">Renewable Energy Systems</span>
+                <span class="chip">Photovoltaic (Solar PV)</span>
+                <span class="chip">Thermal Analysis</span>
+                <span class="chip">Structural Analysis</span>
+                <span class="chip">Fluid Mechanics</span>
+                <span class="chip">Heat Exchangers</span>
+                <span class="chip">Welding Systems</span>
+                <span class="chip">Manufacturing Processes</span>
+                <span class="chip">Machine Maintenance</span>
+                <span class="chip">Materials Science</span>
             </div>
-            <div class="skill-item">
-                <div class="skill-row"><span class="skill-name">Turkish (Native)</span><span class="skill-pct">100%</span></div>
-                <div class="skill-bar"><div class="skill-fill orange" data-width="100"></div></div>
+            <div class="skill-sub-head skill-group-head">
+                <div class="skill-group-icon"><i class="fas fa-robot"></i></div>
+                <div class="skill-group-title">AI &amp; Digital</div>
             </div>
-            <div style="margin-top: 1.5rem;">
-                <div class="skill-group-head" style="margin-bottom: 1rem;">
-                    <div class="skill-group-icon"><i class="fas fa-robot"></i></div>
-                    <div class="skill-group-title">AI &amp; Digital</div>
-                </div>
-                <div class="skill-chips">
-                    <span class="chip">AI Literacy</span>
-                    <span class="chip">Prompt Engineering</span>
-                    <span class="chip">Claude Code</span>
-                    <span class="chip">Web Development</span>
-                    <span class="chip">System Automation</span>
-                    <span class="chip">Debugging</span>
-                </div>
+            <div class="skill-chips">
+                <span class="chip">AI Literacy</span>
+                <span class="chip">Prompt Engineering</span>
+                <span class="chip">Web Development</span>
+                <span class="chip">Office Suite</span>
             </div>
         </div>
 
+        <!-- Group 3: Languages + Business -->
         <div class="skill-group reveal stagger-3">
             <div class="skill-group-head">
+                <div class="skill-group-icon"><i class="fas fa-language"></i></div>
+                <div class="skill-group-title">Languages</div>
+            </div>
+            <div class="skill-rated">
+                <span class="skill-rated-name">Turkish (Native)</span>
+                <div class="skill-dots">
+                    <span class="dot on-o"></span><span class="dot on-o"></span><span class="dot on-o"></span><span class="dot on-o"></span><span class="dot on-o"></span>
+                </div>
+            </div>
+            <div class="skill-rated">
+                <span class="skill-rated-name">English (B2 / C1)</span>
+                <div class="skill-dots">
+                    <span class="dot on-o"></span><span class="dot on-o"></span><span class="dot on-o"></span><span class="dot on-o"></span><span class="dot"></span>
+                </div>
+            </div>
+            <div class="skill-rated">
+                <span class="skill-rated-name">Spanish (A1)</span>
+                <div class="skill-dots">
+                    <span class="dot on-o"></span><span class="dot on-o"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                </div>
+            </div>
+            <div class="skill-sub-head skill-group-head">
                 <div class="skill-group-icon"><i class="fas fa-briefcase"></i></div>
-                <div class="skill-group-title">Business &amp; Management</div>
+                <div class="skill-group-title">Business &amp; Sales</div>
             </div>
-            <div class="skill-item">
-                <div class="skill-row"><span class="skill-name">International Sales</span><span class="skill-pct">92%</span></div>
-                <div class="skill-bar"><div class="skill-fill green" data-width="92"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-row"><span class="skill-name">Wholesale Operations</span><span class="skill-pct">90%</span></div>
-                <div class="skill-bar"><div class="skill-fill green" data-width="90"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-row"><span class="skill-name">Exhibition Management</span><span class="skill-pct">88%</span></div>
-                <div class="skill-bar"><div class="skill-fill green" data-width="88"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-row"><span class="skill-name">CRM / Client Relations</span><span class="skill-pct">85%</span></div>
-                <div class="skill-bar"><div class="skill-fill green" data-width="85"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-row"><span class="skill-name">Office Software Suite</span><span class="skill-pct">90%</span></div>
-                <div class="skill-bar"><div class="skill-fill green" data-width="90"></div></div>
+            <div class="skill-chips">
+                <span class="chip">International Sales</span>
+                <span class="chip">Wholesale Operations</span>
+                <span class="chip">Exhibition Management</span>
+                <span class="chip">Client Relations</span>
+                <span class="chip">Sales &amp; Marketing</span>
+                <span class="chip">Entrepreneurship</span>
             </div>
         </div>
 
@@ -1183,21 +1254,21 @@
             <div class="cert-ico"><i class="fas fa-solar-panel"></i></div>
             <div>
                 <div class="cert-name">Photovoltaic Solar Energy Systems Expertise</div>
-                <div class="cert-by">Konya Karatay University</div>
+                <div class="cert-by">KTO Karatay University · 2022–2023</div>
             </div>
         </div>
         <div class="cert-card reveal stagger-2">
-            <div class="cert-ico"><i class="fas fa-lightbulb"></i></div>
-            <div>
-                <div class="cert-name">Traditional Entrepreneurship Certificate</div>
-                <div class="cert-by">KOSGEB</div>
-            </div>
-        </div>
-        <div class="cert-card reveal stagger-3">
             <div class="cert-ico"><i class="fas fa-drafting-compass"></i></div>
             <div>
                 <div class="cert-name">AutoCAD 3D Drawing Certificate</div>
-                <div class="cert-by">Udemy</div>
+                <div class="cert-by">Udemy · 2022–2023</div>
+            </div>
+        </div>
+        <div class="cert-card reveal stagger-3">
+            <div class="cert-ico"><i class="fas fa-lightbulb"></i></div>
+            <div>
+                <div class="cert-name">Traditional Entrepreneurship Certificate</div>
+                <div class="cert-by">KOSGEB · 2025–2026</div>
             </div>
         </div>
     </div>
@@ -1213,9 +1284,9 @@
     <div class="contact-wrapper">
         <div class="contact-left reveal stagger-1">
             <p>
-                I am currently open to internship opportunities, engineering projects, and collaborative
-                ventures that combine mechanical engineering expertise with an international business
-                perspective. Feel free to reach out — I respond promptly.
+                I am currently open to engineering positions, internship opportunities, and collaborative
+                ventures that combine mechanical engineering expertise with renewable energy and international
+                business experience. Feel free to reach out — I respond promptly.
             </p>
             <div class="contact-links">
                 <a href="mailto:alpererdogan222@gmail.com" class="contact-link">
@@ -1228,19 +1299,19 @@
                 </a>
                 <div class="contact-link">
                     <div class="contact-link-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    Edirne / Istanbul, Turkey
+                    Istanbul / Mecidiyeköy, Turkey
                 </div>
             </div>
         </div>
         <div class="contact-card reveal stagger-2">
             <div class="contact-card-title">Personal Details</div>
             <div class="contact-card-sub">Additional information</div>
-            <div class="info-row"><i class="fas fa-id-card"></i> Driver's License — Class B</div>
+            <div class="info-row"><i class="fas fa-birthday-cake"></i> Date of Birth — 27.11.2002</div>
             <div class="info-row"><i class="fas fa-shield-alt"></i> Military Service — Deferred until 2031</div>
             <div class="info-row"><i class="fas fa-heart"></i> Marital Status — Single</div>
-            <div class="info-row"><i class="fas fa-globe"></i> English — Advanced (C1)</div>
+            <div class="info-row"><i class="fas fa-globe"></i> English — B2 / Advanced</div>
             <div class="info-row"><i class="fas fa-graduation-cap"></i> Trakya University — Mechanical Eng.</div>
-            <div class="info-row"><i class="fas fa-star"></i> GPA — 3.01 / 4.00</div>
+            <div class="info-row"><i class="fas fa-star"></i> GPA — 3.00 / 4.00</div>
         </div>
     </div>
 </div>
@@ -1249,7 +1320,7 @@
 <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
 <footer>
     <div class="footer-content">
-        <p>© 2025 <span class="footer-accent">Alper Erdoğan</span> — Mechanical Engineer</p>
+        <p>© 2026 <span class="footer-accent">Alper Erdoğan</span> — Mechanical Engineer</p>
         <p>Built with <span class="footer-accent">precision</span> · Powered by engineering mindset</p>
     </div>
 </footer>
@@ -1314,6 +1385,24 @@
         navbar.classList.toggle('scrolled', window.scrollY > 60);
     });
 
+    /* ─── HAMBURGER MENU ─── */
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        navLinks.classList.toggle('open');
+        document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('open');
+            navLinks.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+    });
+
     /* ─── REVEAL ON SCROLL ─── */
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(e => {
@@ -1325,20 +1414,6 @@
     }, { threshold: 0.12 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    /* ─── SKILL BARS ─── */
-    const skillObserver = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                e.target.querySelectorAll('.skill-fill').forEach(bar => {
-                    bar.style.width = bar.dataset.width + '%';
-                });
-                skillObserver.unobserve(e.target);
-            }
-        });
-    }, { threshold: 0.25 });
-
-    document.querySelectorAll('.skill-group').forEach(el => skillObserver.observe(el));
 
     /* ─── SMOOTH ANCHOR ─── */
     document.querySelectorAll('a[href^="#"]').forEach(link => {
