@@ -63,6 +63,11 @@
             letter-spacing: 0.05em;
         }
         .nav-logo span { color: var(--text-1); }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
         .nav-links { display: flex; gap: 2.5rem; list-style: none; }
         .nav-links a {
             color: var(--text-2);
@@ -74,6 +79,27 @@
             text-transform: uppercase;
         }
         .nav-links a:hover { color: var(--accent); }
+
+        /* ─── LANG TOGGLE ─── */
+        .lang-toggle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--text-2);
+            background: rgba(0, 200, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 0.32rem 0.7rem;
+            cursor: pointer;
+            letter-spacing: 0.12em;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+        .lang-toggle:hover {
+            color: var(--accent);
+            border-color: rgba(0, 200, 255, 0.35);
+            background: rgba(0, 200, 255, 0.1);
+        }
 
         /* ─── HAMBURGER ─── */
         .hamburger {
@@ -856,17 +882,20 @@
 <!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
 <nav id="navbar">
     <a href="#hero" class="nav-logo">AE<span>.dev</span></a>
-    <ul class="nav-links" id="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#about" data-i18n="nav-about">About</a></li>
+            <li><a href="#education" data-i18n="nav-education">Education</a></li>
+            <li><a href="#experience" data-i18n="nav-experience">Experience</a></li>
+            <li><a href="#projects" data-i18n="nav-projects">Projects</a></li>
+            <li><a href="#skills" data-i18n="nav-skills">Skills</a></li>
+            <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
+        </ul>
+        <button class="lang-toggle" id="lang-toggle">TR</button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
 </nav>
 
 <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
@@ -874,21 +903,21 @@
     <canvas id="hero-canvas"></canvas>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-        <div class="hero-tag">Mechanical Engineer</div>
+        <div class="hero-tag" data-i18n="hero-tag">Mechanical Engineer</div>
         <h1 class="hero-name">
             <span class="first">Alper</span>
             <span class="last">Erdoğan</span>
         </h1>
-        <p class="hero-title">CAE Specialist · Renewable Energy · ANSYS Expert</p>
-        <p class="hero-subtitle">// Trakya University · GPA 3.00 · Istanbul, Turkey</p>
+        <p class="hero-title" data-i18n="hero-title">CAE Specialist · Renewable Energy · ANSYS Expert</p>
+        <p class="hero-subtitle" data-i18n="hero-subtitle">// Trakya University · GPA 3.00 · Istanbul, Turkey</p>
         <div class="hero-buttons">
-            <a href="#projects" class="btn btn-primary">View Projects</a>
-            <a href="AlperErdogan_CV.pdf" download class="btn btn-download"><i class="fas fa-download"></i> Download CV</a>
-            <a href="#contact" class="btn btn-outline">Contact Me</a>
+            <a href="#projects" class="btn btn-primary" data-i18n="hero-btn-projects">View Projects</a>
+            <a href="AlperErdogan_CV.pdf" download class="btn btn-download" data-i18n="hero-btn-cv"><i class="fas fa-download"></i> Download CV</a>
+            <a href="#contact" class="btn btn-outline" data-i18n="hero-btn-contact">Contact Me</a>
         </div>
     </div>
     <div class="scroll-hint">
-        <span>Scroll</span>
+        <span data-i18n="hero-scroll">Scroll</span>
         <div class="scroll-line"></div>
     </div>
 </section>
@@ -897,8 +926,8 @@
 <div class="section-bg">
 <div class="wrapper" id="about">
     <div class="reveal">
-        <p class="section-label">01 — About</p>
-        <h2 class="section-title">Who I <span>Am</span></h2>
+        <p class="section-label" data-i18n="about-label">01 — About</p>
+        <h2 class="section-title" data-i18n="about-title">Who I <span>Am</span></h2>
     </div>
     <div class="about-grid">
 
@@ -908,18 +937,18 @@
         </div>
 
         <div class="about-text reveal stagger-1">
-            <p>
+            <p data-i18n="about-p1">
                 I am a Mechanical Engineering graduate from Trakya University, specializing in
                 Computer-Aided Engineering (CAE) simulations using the ANSYS ecosystem. My academic
                 work spans thermal, structural, and explicit dynamics analyses across real-world
                 engineering challenges.
             </p>
-            <p>
+            <p data-i18n="about-p2">
                 My technical foundation includes ANSYS Fluent for CFD analysis, Static Structural for
                 FEA, and Explicit Dynamics for high-strain-rate impact simulations. I have also completed
                 specializations in Photovoltaic Solar Energy Systems and AutoCAD 3D Modeling.
             </p>
-            <p>
+            <p data-i18n="about-p3">
                 Beyond engineering, I bring strong international business experience — managing wholesale
                 operations, executing large-scale exhibition sales at world-class venues, and building
                 international client relationships across the USA gem and mineral industry for over 5 years.
@@ -933,15 +962,15 @@
             </div>
             <div class="stat-card">
                 <span class="stat-number">5+</span>
-                <div class="stat-label">USA Experience</div>
+                <div class="stat-label" data-i18n="stat-usa">USA Experience</div>
             </div>
             <div class="stat-card">
                 <span class="stat-number">3</span>
-                <div class="stat-label">ANSYS Projects</div>
+                <div class="stat-label" data-i18n="stat-projects">ANSYS Projects</div>
             </div>
             <div class="stat-card">
                 <span class="stat-number">B2</span>
-                <div class="stat-label">English Level</div>
+                <div class="stat-label" data-i18n="stat-english">English Level</div>
             </div>
         </div>
 
@@ -952,30 +981,30 @@
 <!-- ═══════════════════════════════ EDUCATION ═══════════════════════════════ -->
 <div class="wrapper" id="education">
     <div class="reveal">
-        <p class="section-label">02 — Education</p>
-        <h2 class="section-title">Academic <span>Background</span></h2>
+        <p class="section-label" data-i18n="edu-label">02 — Education</p>
+        <h2 class="section-title" data-i18n="edu-title">Academic <span>Background</span></h2>
     </div>
     <div class="edu-grid">
         <div class="edu-card reveal stagger-1">
             <div class="edu-icon"><i class="fas fa-university"></i></div>
-            <div class="edu-degree">Mechanical Engineering (English Medium)</div>
+            <div class="edu-degree" data-i18n="edu-degree-1">Mechanical Engineering (English Medium)</div>
             <div class="edu-school">Trakya University</div>
-            <div class="edu-meta"><i class="fas fa-map-marker-alt"></i> Edirne, Turkey · 2021 – 2026</div>
+            <div class="edu-meta" data-i18n="edu-meta-1"><i class="fas fa-map-marker-alt"></i> Edirne, Turkey · 2021 – 2026</div>
             <ul class="edu-details">
-                <li><i class="fas fa-circle"></i> GPA: 3.00 / 4.00</li>
-                <li><i class="fas fa-circle"></i> Language of Instruction: English</li>
-                <li><i class="fas fa-circle"></i> Focus: CAE, Simulation, Structural &amp; Thermal Analysis</li>
-                <li><i class="fas fa-circle"></i> Graduation: 2026</li>
+                <li><i class="fas fa-circle"></i><span data-i18n="edu-d1-1">GPA: 3.00 / 4.00</span></li>
+                <li><i class="fas fa-circle"></i><span data-i18n="edu-d1-2">Language of Instruction: English</span></li>
+                <li><i class="fas fa-circle"></i><span data-i18n="edu-d1-3">Focus: CAE, Simulation, Structural &amp; Thermal Analysis</span></li>
+                <li><i class="fas fa-circle"></i><span data-i18n="edu-d1-4">Graduation: 2026</span></li>
             </ul>
         </div>
         <div class="edu-card reveal stagger-2">
             <div class="edu-icon"><i class="fas fa-school"></i></div>
-            <div class="edu-degree">Multi-Program Anatolian High School</div>
+            <div class="edu-degree" data-i18n="edu-degree-2">Multi-Program Anatolian High School</div>
             <div class="edu-school">Kağıthane Anatolian High School</div>
-            <div class="edu-meta"><i class="fas fa-map-marker-alt"></i> Istanbul, Turkey · 2016 – 2020</div>
+            <div class="edu-meta" data-i18n="edu-meta-2"><i class="fas fa-map-marker-alt"></i> Istanbul, Turkey · 2016 – 2020</div>
             <ul class="edu-details">
-                <li><i class="fas fa-circle"></i> Graduation Grade: 83.09 / 100</li>
-                <li><i class="fas fa-circle"></i> Multi-Program Curriculum</li>
+                <li><i class="fas fa-circle"></i><span data-i18n="edu-d2-1">Graduation Grade: 83.09 / 100</span></li>
+                <li><i class="fas fa-circle"></i><span data-i18n="edu-d2-2">Multi-Program Curriculum</span></li>
             </ul>
         </div>
     </div>
@@ -985,8 +1014,8 @@
 <div class="section-bg">
 <div class="wrapper" id="experience">
     <div class="reveal">
-        <p class="section-label">03 — Experience</p>
-        <h2 class="section-title">Work &amp; Field <span>Experience</span></h2>
+        <p class="section-label" data-i18n="exp-label">03 — Experience</p>
+        <h2 class="section-title" data-i18n="exp-title">Work &amp; Field <span>Experience</span></h2>
     </div>
     <div class="timeline">
 
@@ -995,18 +1024,15 @@
             <div class="timeline-header">
                 <div class="timeline-top">
                     <div class="timeline-company">Consolidated Mineral And Rock Shop</div>
-                    <div class="timeline-badge">USA — International</div>
+                    <div class="timeline-badge" data-i18n="exp1-badge">USA — International</div>
                 </div>
-                <div class="timeline-role">International Wholesale &amp; Marketing Manager</div>
-                <div class="timeline-loc">
-                    <i class="fas fa-map-marker-alt"></i>
-                    San Francisco, CA · Nevada · Arizona — Summer &amp; Winter Breaks
-                </div>
+                <div class="timeline-role" data-i18n="exp1-role">International Wholesale &amp; Marketing Manager</div>
+                <div class="timeline-loc" data-i18n="exp1-loc"><i class="fas fa-map-marker-alt"></i> San Francisco, CA · Nevada · Arizona — Summer &amp; Winter Breaks</div>
                 <ul class="timeline-desc">
-                    <li>Managed wholesale and operational processes at the San Francisco, California branch for two terms, overseeing full business cycle from procurement to client delivery.</li>
-                    <li>Participated in the Arizona Tucson Gem Show — the world's largest gem and mineral show — for 5 consecutive years, personally managing executive show operations for the last 4 years.</li>
-                    <li>Organized and executed active sales exhibitions 3 times at The Venetian Expo and 1 time at the Off-Price Show in Las Vegas, Nevada.</li>
-                    <li>Conducted international customer relationship management and implemented strategic sales plans, gaining advanced professional English fluency through daily high-stakes business communication.</li>
+                    <li data-i18n="exp1-d1">Managed wholesale and operational processes at the San Francisco, California branch for two terms, overseeing full business cycle from procurement to client delivery.</li>
+                    <li data-i18n="exp1-d2">Participated in the Arizona Tucson Gem Show — the world's largest gem and mineral show — for 5 consecutive years, personally managing executive show operations for the last 4 years.</li>
+                    <li data-i18n="exp1-d3">Organized and executed active sales exhibitions 3 times at The Venetian Expo and 1 time at the Off-Price Show in Las Vegas, Nevada.</li>
+                    <li data-i18n="exp1-d4">Conducted international customer relationship management and implemented strategic sales plans, gaining advanced professional English fluency through daily high-stakes business communication.</li>
                 </ul>
             </div>
         </div>
@@ -1016,17 +1042,14 @@
             <div class="timeline-header">
                 <div class="timeline-top">
                     <div class="timeline-company">Önmetal AŞ</div>
-                    <div class="timeline-badge">Engineering Internship</div>
+                    <div class="timeline-badge" data-i18n="exp2-badge">Engineering Internship</div>
                 </div>
-                <div class="timeline-role">General Workshop &amp; Operations Intern</div>
-                <div class="timeline-loc">
-                    <i class="fas fa-map-marker-alt"></i>
-                    Turkey
-                </div>
+                <div class="timeline-role" data-i18n="exp2-role">General Workshop &amp; Operations Intern</div>
+                <div class="timeline-loc" data-i18n="exp2-loc"><i class="fas fa-map-marker-alt"></i> Turkey</div>
                 <ul class="timeline-desc">
-                    <li>Analyzed production stages from an engineering perspective at an integrated manufacturing facility producing heat exchangers, where casting and assembly are conducted under one roof.</li>
-                    <li>General Workshop: Practical on-site analysis of manufacturing methods, machining and non-machining processes, and foundry operations.</li>
-                    <li>Operations: Evaluated factory organization, production planning, and the supply chain from casting to the final assembly line within the framework of quality standards.</li>
+                    <li data-i18n="exp2-d1">Analyzed production stages from an engineering perspective at an integrated manufacturing facility producing heat exchangers, where casting and assembly are conducted under one roof.</li>
+                    <li data-i18n="exp2-d2">General Workshop: Practical on-site analysis of manufacturing methods, machining and non-machining processes, and foundry operations.</li>
+                    <li data-i18n="exp2-d3">Operations: Evaluated factory organization, production planning, and the supply chain from casting to the final assembly line within the framework of quality standards.</li>
                 </ul>
             </div>
         </div>
@@ -1036,16 +1059,13 @@
             <div class="timeline-header">
                 <div class="timeline-top">
                     <div class="timeline-company">Emel Elektrik</div>
-                    <div class="timeline-badge">Volunteer Intern · 2021–2022</div>
+                    <div class="timeline-badge" data-i18n="exp3-badge">Volunteer Intern · 2021–2022</div>
                 </div>
-                <div class="timeline-role">Electrical Systems Volunteer Intern</div>
-                <div class="timeline-loc">
-                    <i class="fas fa-map-marker-alt"></i>
-                    Edirne, Turkey
-                </div>
+                <div class="timeline-role" data-i18n="exp3-role">Electrical Systems Volunteer Intern</div>
+                <div class="timeline-loc" data-i18n="exp3-loc"><i class="fas fa-map-marker-alt"></i> Edirne, Turkey</div>
                 <ul class="timeline-desc">
-                    <li>Completed a one-year volunteer internship at a local electricity company while pursuing my renewable energy specialization at KTO Karatay University.</li>
-                    <li>Gained hands-on experience with field applications and machine maintenance procedures, with direct exposure to photovoltaic and grid-connected renewable energy systems.</li>
+                    <li data-i18n="exp3-d1">Completed a one-year volunteer internship at a local electricity company while pursuing my renewable energy specialization at KTO Karatay University.</li>
+                    <li data-i18n="exp3-d2">Gained hands-on experience with field applications and machine maintenance procedures, with direct exposure to photovoltaic and grid-connected renewable energy systems.</li>
                 </ul>
             </div>
         </div>
@@ -1057,17 +1077,17 @@
 <!-- ═══════════════════════════════ PROJECTS ═══════════════════════════════ -->
 <div class="wrapper" id="projects">
     <div class="reveal">
-        <p class="section-label">04 — Projects</p>
-        <h2 class="section-title">Engineering <span>Projects</span></h2>
+        <p class="section-label" data-i18n="proj-label">04 — Projects</p>
+        <h2 class="section-title" data-i18n="proj-title">Engineering <span>Projects</span></h2>
     </div>
     <div class="projects-grid">
 
         <div class="project-card reveal stagger-1">
             <div class="project-glow"></div>
             <div class="project-icon">🌡️</div>
-            <div class="project-label">Thermal · CFD</div>
-            <div class="project-title">Cooling Efficiency Analysis of an Automobile Radiator</div>
-            <p class="project-desc">
+            <div class="project-label" data-i18n="proj1-label">Thermal · CFD</div>
+            <div class="project-title" data-i18n="proj1-title">Cooling Efficiency Analysis of an Automobile Radiator</div>
+            <p class="project-desc" data-i18n="proj1-desc">
                 Used the ANSYS Fluent Flow module to calculate and compare the cooling efficiency of a
                 car radiator across three different materials — gold, aluminum, and titanium — with a
                 single working fluid. Thermal distribution and fluid flow behavior were analyzed to
@@ -1085,9 +1105,9 @@
         <div class="project-card reveal stagger-2">
             <div class="project-glow"></div>
             <div class="project-icon">⚙️</div>
-            <div class="project-label">Structural · FEA</div>
-            <div class="project-title">Structural Analysis of a Slat Chain Conveyor System</div>
-            <p class="project-desc">
+            <div class="project-label" data-i18n="proj2-label">Structural · FEA</div>
+            <div class="project-title" data-i18n="proj2-title">Structural Analysis of a Slat Chain Conveyor System</div>
+            <p class="project-desc" data-i18n="proj2-desc">
                 Performed load-bearing analysis of a slat chain conveyor system installed on a 7-meter
                 track, driven by a 2.2 kW motor, designed to carry 6 boxes each weighing 50 kg. The
                 static structural module in ANSYS was used to evaluate stress distribution, deformation,
@@ -1105,9 +1125,9 @@
         <div class="project-card reveal stagger-3">
             <div class="project-glow"></div>
             <div class="project-icon">🎯</div>
-            <div class="project-label">Graduation Project · Defense</div>
-            <div class="project-title">Ballistic Impact Analysis on Ti-6Al-4V</div>
-            <p class="project-desc">
+            <div class="project-label" data-i18n="proj3-label">Graduation Project · Defense</div>
+            <div class="project-title" data-i18n="proj3-title">Ballistic Impact Analysis on Ti-6Al-4V</div>
+            <p class="project-desc" data-i18n="proj3-desc">
                 Investigated ballistic effects and deformation characteristics of NATO standard 7.62 mm,
                 5.56 mm, and 9 mm ammunition on Ti-6Al-4V titanium alloy — a critical aerospace and
                 defense material. Simulations executed at high strain rates via integrated solvers.
@@ -1128,8 +1148,8 @@
 <div class="section-bg">
 <div class="wrapper" id="skills">
     <div class="reveal">
-        <p class="section-label">05 — Skills</p>
-        <h2 class="section-title">Technical <span>Proficiency</span></h2>
+        <p class="section-label" data-i18n="skills-label">05 — Skills</p>
+        <h2 class="section-title" data-i18n="skills-title">Technical <span>Proficiency</span></h2>
     </div>
     <div class="skills-grid">
 
@@ -1137,22 +1157,22 @@
         <div class="skill-group reveal stagger-1">
             <div class="skill-group-head">
                 <div class="skill-group-icon"><i class="fas fa-cogs"></i></div>
-                <div class="skill-group-title">Simulation &amp; CAE</div>
+                <div class="skill-group-title" data-i18n="sg1-title">Simulation &amp; CAE</div>
             </div>
             <div class="skill-rated">
-                <span class="skill-rated-name">ANSYS Fluent (CFD)</span>
+                <span class="skill-rated-name" data-i18n="sr-fluent">ANSYS Fluent (CFD)</span>
                 <div class="skill-dots">
                     <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
                 </div>
             </div>
             <div class="skill-rated">
-                <span class="skill-rated-name">ANSYS Static Structural</span>
+                <span class="skill-rated-name" data-i18n="sr-static">ANSYS Static Structural</span>
                 <div class="skill-dots">
                     <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
                 </div>
             </div>
             <div class="skill-rated">
-                <span class="skill-rated-name">ANSYS Explicit Dynamics</span>
+                <span class="skill-rated-name" data-i18n="sr-explicit">ANSYS Explicit Dynamics</span>
                 <div class="skill-dots">
                     <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
                 </div>
@@ -1164,7 +1184,7 @@
                 </div>
             </div>
             <div class="skill-rated">
-                <span class="skill-rated-name">AutoCAD 3D Modeling</span>
+                <span class="skill-rated-name" data-i18n="sr-autocad">AutoCAD 3D Modeling</span>
                 <div class="skill-dots">
                     <span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span>
                 </div>
@@ -1175,29 +1195,29 @@
         <div class="skill-group reveal stagger-2">
             <div class="skill-group-head">
                 <div class="skill-group-icon"><i class="fas fa-solar-panel"></i></div>
-                <div class="skill-group-title">Technical Expertise</div>
+                <div class="skill-group-title" data-i18n="sg2-title">Technical Expertise</div>
             </div>
             <div class="skill-chips">
-                <span class="chip">Renewable Energy Systems</span>
-                <span class="chip">Photovoltaic (Solar PV)</span>
-                <span class="chip">Thermal Analysis</span>
-                <span class="chip">Structural Analysis</span>
-                <span class="chip">Fluid Mechanics</span>
-                <span class="chip">Heat Exchangers</span>
-                <span class="chip">Welding Systems</span>
-                <span class="chip">Manufacturing Processes</span>
-                <span class="chip">Machine Maintenance</span>
-                <span class="chip">Materials Science</span>
+                <span class="chip" data-i18n="chip-renewable">Renewable Energy Systems</span>
+                <span class="chip" data-i18n="chip-solar">Photovoltaic (Solar PV)</span>
+                <span class="chip" data-i18n="chip-thermal">Thermal Analysis</span>
+                <span class="chip" data-i18n="chip-structural">Structural Analysis</span>
+                <span class="chip" data-i18n="chip-fluid">Fluid Mechanics</span>
+                <span class="chip" data-i18n="chip-heat">Heat Exchangers</span>
+                <span class="chip" data-i18n="chip-welding">Welding Systems</span>
+                <span class="chip" data-i18n="chip-manufacturing">Manufacturing Processes</span>
+                <span class="chip" data-i18n="chip-maintenance">Machine Maintenance</span>
+                <span class="chip" data-i18n="chip-materials">Materials Science</span>
             </div>
             <div class="skill-sub-head skill-group-head">
                 <div class="skill-group-icon"><i class="fas fa-robot"></i></div>
-                <div class="skill-group-title">AI &amp; Digital</div>
+                <div class="skill-group-title" data-i18n="sg3-title">AI &amp; Digital</div>
             </div>
             <div class="skill-chips">
-                <span class="chip">AI Literacy</span>
-                <span class="chip">Prompt Engineering</span>
-                <span class="chip">Web Development</span>
-                <span class="chip">Office Suite</span>
+                <span class="chip" data-i18n="chip-ai">AI Literacy</span>
+                <span class="chip" data-i18n="chip-prompt">Prompt Engineering</span>
+                <span class="chip" data-i18n="chip-web">Web Development</span>
+                <span class="chip" data-i18n="chip-office">Office Suite</span>
             </div>
         </div>
 
@@ -1205,37 +1225,37 @@
         <div class="skill-group reveal stagger-3">
             <div class="skill-group-head">
                 <div class="skill-group-icon"><i class="fas fa-language"></i></div>
-                <div class="skill-group-title">Languages</div>
+                <div class="skill-group-title" data-i18n="sg4-title">Languages</div>
             </div>
             <div class="skill-rated">
-                <span class="skill-rated-name">Turkish (Native)</span>
+                <span class="skill-rated-name" data-i18n="sr-turkish">Turkish (Native)</span>
                 <div class="skill-dots">
                     <span class="dot on-o"></span><span class="dot on-o"></span><span class="dot on-o"></span><span class="dot on-o"></span><span class="dot on-o"></span>
                 </div>
             </div>
             <div class="skill-rated">
-                <span class="skill-rated-name">English (B2 / C1)</span>
+                <span class="skill-rated-name" data-i18n="sr-english">English (B2 / C1)</span>
                 <div class="skill-dots">
                     <span class="dot on-o"></span><span class="dot on-o"></span><span class="dot on-o"></span><span class="dot on-o"></span><span class="dot"></span>
                 </div>
             </div>
             <div class="skill-rated">
-                <span class="skill-rated-name">Spanish (A1)</span>
+                <span class="skill-rated-name" data-i18n="sr-spanish">Spanish (A1)</span>
                 <div class="skill-dots">
                     <span class="dot on-o"></span><span class="dot on-o"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
                 </div>
             </div>
             <div class="skill-sub-head skill-group-head">
                 <div class="skill-group-icon"><i class="fas fa-briefcase"></i></div>
-                <div class="skill-group-title">Business &amp; Sales</div>
+                <div class="skill-group-title" data-i18n="sg5-title">Business &amp; Sales</div>
             </div>
             <div class="skill-chips">
-                <span class="chip">International Sales</span>
-                <span class="chip">Wholesale Operations</span>
-                <span class="chip">Exhibition Management</span>
-                <span class="chip">Client Relations</span>
-                <span class="chip">Sales &amp; Marketing</span>
-                <span class="chip">Entrepreneurship</span>
+                <span class="chip" data-i18n="chip-intl-sales">International Sales</span>
+                <span class="chip" data-i18n="chip-wholesale">Wholesale Operations</span>
+                <span class="chip" data-i18n="chip-exhibition">Exhibition Management</span>
+                <span class="chip" data-i18n="chip-client">Client Relations</span>
+                <span class="chip" data-i18n="chip-sales-mkt">Sales &amp; Marketing</span>
+                <span class="chip" data-i18n="chip-entrepreneur">Entrepreneurship</span>
             </div>
         </div>
 
@@ -1246,28 +1266,28 @@
 <!-- ═══════════════════════════════ CERTIFICATIONS ═══════════════════════════════ -->
 <div class="wrapper" id="certifications">
     <div class="reveal">
-        <p class="section-label">06 — Certifications</p>
-        <h2 class="section-title">Certificates &amp; <span>Training</span></h2>
+        <p class="section-label" data-i18n="cert-label">06 — Certifications</p>
+        <h2 class="section-title" data-i18n="cert-title">Certificates &amp; <span>Training</span></h2>
     </div>
     <div class="cert-grid">
         <div class="cert-card reveal stagger-1">
             <div class="cert-ico"><i class="fas fa-solar-panel"></i></div>
             <div>
-                <div class="cert-name">Photovoltaic Solar Energy Systems Expertise</div>
+                <div class="cert-name" data-i18n="cert1-name">Photovoltaic Solar Energy Systems Expertise</div>
                 <div class="cert-by">KTO Karatay University · 2022–2023</div>
             </div>
         </div>
         <div class="cert-card reveal stagger-2">
             <div class="cert-ico"><i class="fas fa-drafting-compass"></i></div>
             <div>
-                <div class="cert-name">AutoCAD 3D Drawing Certificate</div>
+                <div class="cert-name" data-i18n="cert2-name">AutoCAD 3D Drawing Certificate</div>
                 <div class="cert-by">Udemy · 2022–2023</div>
             </div>
         </div>
         <div class="cert-card reveal stagger-3">
             <div class="cert-ico"><i class="fas fa-lightbulb"></i></div>
             <div>
-                <div class="cert-name">Traditional Entrepreneurship Certificate</div>
+                <div class="cert-name" data-i18n="cert3-name">Traditional Entrepreneurship Certificate</div>
                 <div class="cert-by">KOSGEB · 2025–2026</div>
             </div>
         </div>
@@ -1278,12 +1298,12 @@
 <div class="section-bg">
 <div class="wrapper" id="contact">
     <div class="reveal">
-        <p class="section-label">07 — Contact</p>
-        <h2 class="section-title">Get In <span>Touch</span></h2>
+        <p class="section-label" data-i18n="contact-label">07 — Contact</p>
+        <h2 class="section-title" data-i18n="contact-title">Get In <span>Touch</span></h2>
     </div>
     <div class="contact-wrapper">
         <div class="contact-left reveal stagger-1">
-            <p>
+            <p data-i18n="contact-p">
                 I am currently open to engineering positions, internship opportunities, and collaborative
                 ventures that combine mechanical engineering expertise with renewable energy and international
                 business experience. Feel free to reach out — I respond promptly.
@@ -1304,14 +1324,14 @@
             </div>
         </div>
         <div class="contact-card reveal stagger-2">
-            <div class="contact-card-title">Personal Details</div>
-            <div class="contact-card-sub">Additional information</div>
-            <div class="info-row"><i class="fas fa-birthday-cake"></i> Date of Birth — 27.11.2002</div>
-            <div class="info-row"><i class="fas fa-shield-alt"></i> Military Service — Deferred until 2031</div>
-            <div class="info-row"><i class="fas fa-heart"></i> Marital Status — Single</div>
-            <div class="info-row"><i class="fas fa-globe"></i> English — B2 / Advanced</div>
-            <div class="info-row"><i class="fas fa-graduation-cap"></i> Trakya University — Mechanical Eng.</div>
-            <div class="info-row"><i class="fas fa-star"></i> GPA — 3.00 / 4.00</div>
+            <div class="contact-card-title" data-i18n="contact-card-title">Personal Details</div>
+            <div class="contact-card-sub" data-i18n="contact-card-sub">Additional information</div>
+            <div class="info-row" data-i18n="info-dob"><i class="fas fa-birthday-cake"></i> Date of Birth — 27.11.2002</div>
+            <div class="info-row" data-i18n="info-military"><i class="fas fa-shield-alt"></i> Military Service — Deferred until 2031</div>
+            <div class="info-row" data-i18n="info-marital"><i class="fas fa-heart"></i> Marital Status — Single</div>
+            <div class="info-row" data-i18n="info-english-lvl"><i class="fas fa-globe"></i> English — B2 / Advanced</div>
+            <div class="info-row" data-i18n="info-university"><i class="fas fa-graduation-cap"></i> Trakya University — Mechanical Eng.</div>
+            <div class="info-row" data-i18n="info-gpa"><i class="fas fa-star"></i> GPA — 3.00 / 4.00</div>
         </div>
     </div>
 </div>
@@ -1320,8 +1340,8 @@
 <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
 <footer>
     <div class="footer-content">
-        <p>© 2026 <span class="footer-accent">Alper Erdoğan</span> — Mechanical Engineer</p>
-        <p>Built with <span class="footer-accent">precision</span> · Powered by engineering mindset</p>
+        <p data-i18n="footer-copy">© 2026 <span class="footer-accent">Alper Erdoğan</span> — Mechanical Engineer</p>
+        <p data-i18n="footer-sub">Built with <span class="footer-accent">precision</span> · Powered by engineering mindset</p>
     </div>
 </footer>
 
@@ -1424,6 +1444,157 @@
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
+    });
+
+    /* ─── LANGUAGE TOGGLE ─── */
+    const trText = {
+        'nav-about': 'Hakkımda',
+        'nav-education': 'Eğitim',
+        'nav-experience': 'Deneyim',
+        'nav-projects': 'Projeler',
+        'nav-skills': 'Beceriler',
+        'nav-contact': 'İletişim',
+
+        'hero-tag': 'Makine Mühendisi',
+        'hero-title': 'CAE Uzmanı · Yenilenebilir Enerji · ANSYS Uzmanı',
+        'hero-subtitle': '// Trakya Üniversitesi · GPA 3.00 · İstanbul, Türkiye',
+        'hero-btn-projects': 'Projeleri Gör',
+        'hero-btn-cv': '<i class="fas fa-download"></i> CV İndir',
+        'hero-btn-contact': 'İletişime Geç',
+        'hero-scroll': 'Kaydır',
+
+        'about-label': '01 — Hakkımda',
+        'about-title': 'Ben <span>Kimim</span>',
+        'about-p1': 'Trakya Üniversitesi Makine Mühendisliği mezunuyum; ANSYS ekosistemini kullanarak Bilgisayar Destekli Mühendislik (CAE) simülasyonları konusunda uzmanlaşmaktayım. Akademik çalışmalarım, gerçek mühendislik problemleri üzerinde termal, yapısal ve explicit dinamik analizleri kapsamaktadır.',
+        'about-p2': 'Teknik altyapım; CFD analizi için ANSYS Fluent, FEA için Static Structural ve yüksek gerinim hızı çarpma simülasyonları için Explicit Dynamics\'i içermektedir. Ayrıca Fotovoltaik Güneş Enerjisi Sistemleri ve AutoCAD 3D Modelleme alanlarında uzmanlaşma sertifikalarım bulunmaktadır.',
+        'about-p3': 'Mühendisliğin ötesinde güçlü bir uluslararası iş deneyimine sahibim — toptan satış operasyonları yönetmek, dünya çapında prestijli fuarlarda büyük ölçekli sergi satışları gerçekleştirmek ve 5 yılı aşkın süre boyunca ABD mücevher ve mineral sektöründe uluslararası müşteri ilişkileri kurmak gibi.',
+        'stat-usa': 'ABD Deneyimi',
+        'stat-projects': 'ANSYS Projesi',
+        'stat-english': 'İngilizce Seviyesi',
+
+        'edu-label': '02 — Eğitim',
+        'edu-title': 'Akademik <span>Geçmiş</span>',
+        'edu-degree-1': 'Makine Mühendisliği (İngilizce Eğitim)',
+        'edu-meta-1': '<i class="fas fa-map-marker-alt"></i> Edirne, Türkiye · 2021 – 2026',
+        'edu-d1-1': 'GPA: 3.00 / 4.00',
+        'edu-d1-2': 'Eğitim Dili: İngilizce',
+        'edu-d1-3': 'Odak: CAE, Simülasyon, Yapısal &amp; Termal Analiz',
+        'edu-d1-4': 'Mezuniyet: 2026',
+        'edu-degree-2': 'Çok Programlı Anadolu Lisesi',
+        'edu-meta-2': '<i class="fas fa-map-marker-alt"></i> İstanbul, Türkiye · 2016 – 2020',
+        'edu-d2-1': 'Mezuniyet Notu: 83.09 / 100',
+        'edu-d2-2': 'Çok Programlı Müfredat',
+
+        'exp-label': '03 — Deneyim',
+        'exp-title': 'İş &amp; Saha <span>Deneyimi</span>',
+        'exp1-badge': 'ABD — Uluslararası',
+        'exp1-role': 'Uluslararası Toptan Satış &amp; Pazarlama Müdürü',
+        'exp1-loc': '<i class="fas fa-map-marker-alt"></i> San Francisco, CA · Nevada · Arizona — Yaz &amp; Kış Tatilleri',
+        'exp1-d1': 'İki dönem boyunca San Francisco, Kaliforniya şubesinde toptan satış ve operasyonel süreçleri yönettim; tedarikten müşteriye teslimat aşamasına kadar tüm iş döngüsünü denetledim.',
+        'exp1-d2': 'Arizona Tucson Mücevher Fuarı\'na — dünyanın en büyük mücevher ve mineral fuarı — 5 yıl üst üste katıldım ve son 4 yıl boyunca fuar operasyonlarını bizzat yönettim.',
+        'exp1-d3': 'Las Vegas, Nevada\'da The Venetian Expo\'da 3 kez ve Off-Price Show\'da 1 kez aktif satış sergisi düzenledim ve yürüttüm.',
+        'exp1-d4': 'Uluslararası müşteri ilişkileri yönetimi yürüttüm ve stratejik satış planları uyguladım; günlük yüksek riskli iş görüşmeleri sayesinde ileri düzey profesyonel İngilizce yetkinliği kazandım.',
+        'exp2-badge': 'Mühendislik Stajı',
+        'exp2-role': 'Genel Atölye &amp; Operasyon Stajyeri',
+        'exp2-loc': '<i class="fas fa-map-marker-alt"></i> Türkiye',
+        'exp2-d1': 'Döküm ve montajın aynı çatı altında gerçekleştirildiği entegre bir ısı eşanjörü üretim tesisinde üretim aşamalarını mühendislik perspektifinden inceledim.',
+        'exp2-d2': 'Genel Atölye: Üretim yöntemleri, talaşlı ve talaşsız imalat işlemleri ile döküm operasyonlarının pratik yerinde analizi.',
+        'exp2-d3': 'Operasyon: Fabrika organizasyonu, üretim planlama ve döküm hattından son montaj hattına kadar tedarik zincirinin kalite standartları çerçevesinde değerlendirilmesi.',
+        'exp3-badge': 'Gönüllü Stajyer · 2021–2022',
+        'exp3-role': 'Elektrik Sistemleri Gönüllü Stajyeri',
+        'exp3-loc': '<i class="fas fa-map-marker-alt"></i> Edirne, Türkiye',
+        'exp3-d1': 'KTO Karatay Üniversitesi\'nde yenilenebilir enerji uzmanlığı eğitimi alırken yerel bir elektrik şirketinde bir yıllık gönüllü staj tamamladım.',
+        'exp3-d2': 'Fotovoltaik ve şebekeye bağlı yenilenebilir enerji sistemleriyle doğrudan temas kurarak saha uygulamaları ve makine bakım prosedürleri konusunda uygulamalı deneyim kazandım.',
+
+        'proj-label': '04 — Projeler',
+        'proj-title': 'Mühendislik <span>Projeleri</span>',
+        'proj1-label': 'Termal · CFD',
+        'proj1-title': 'Otomobil Radyatörünün Soğutma Verimliliği Analizi',
+        'proj1-desc': 'Bir araba radyatörünün üç farklı malzeme (altın, alüminyum ve titanyum) üzerindeki soğutma verimliliğini tek bir çalışma sıvısıyla hesaplamak ve karşılaştırmak için ANSYS Fluent Akış modülü kullanıldı. Maksimum ısı dağılım performansı için en uygun malzemeyi belirlemek amacıyla termal dağılım ve sıvı akış davranışı analiz edildi.',
+        'proj2-label': 'Yapısal · FEA',
+        'proj2-title': 'Zincirli Konveyör Sisteminin Yapısal Analizi',
+        'proj2-desc': '7 metrelik bir hat üzerine kurulu, 2,2 kW motorla tahrik edilen ve her biri 50 kg ağırlığında 6 kutu taşıyacak şekilde tasarlanmış bir zincirli konveyör sisteminin yük taşıma analizi gerçekleştirildi. Tam operasyonel yük altında gerilme dağılımı, deformasyon ve güvenlik faktörlerini değerlendirmek için ANSYS\'teki statik yapısal modül kullanıldı.',
+        'proj3-label': 'Bitirme Projesi · Savunma',
+        'proj3-title': 'Ti-6Al-4V Üzerine Balistik Çarpma Analizi',
+        'proj3-desc': 'Kritik bir havacılık ve savunma malzemesi olan Ti-6Al-4V titanyum alaşımı üzerinde NATO standardı 7,62 mm, 5,56 mm ve 9 mm mühimmatın balistik etkileri ve deformasyon özellikleri araştırıldı. Simülasyonlar entegre çözücüler aracılığıyla yüksek gerinim hızlarında yürütüldü.',
+
+        'skills-label': '05 — Beceriler',
+        'skills-title': 'Teknik <span>Yetkinlik</span>',
+        'sg1-title': 'Simülasyon &amp; CAE',
+        'sr-fluent': 'ANSYS Fluent (CFD)',
+        'sr-static': 'ANSYS Static Structural',
+        'sr-explicit': 'ANSYS Explicit Dynamics',
+        'sr-autocad': 'AutoCAD 3D Modelleme',
+        'sg2-title': 'Teknik Uzmanlık',
+        'chip-renewable': 'Yenilenebilir Enerji Sistemleri',
+        'chip-solar': 'Fotovoltaik (Güneş PV)',
+        'chip-thermal': 'Termal Analiz',
+        'chip-structural': 'Yapısal Analiz',
+        'chip-fluid': 'Akışkanlar Mekaniği',
+        'chip-heat': 'Isı Eşanjörleri',
+        'chip-welding': 'Kaynak Sistemleri',
+        'chip-manufacturing': 'İmalat Süreçleri',
+        'chip-maintenance': 'Makine Bakımı',
+        'chip-materials': 'Malzeme Bilimi',
+        'sg3-title': 'YZ &amp; Dijital',
+        'chip-ai': 'YZ Okuryazarlığı',
+        'chip-prompt': 'Prompt Mühendisliği',
+        'chip-web': 'Web Geliştirme',
+        'chip-office': 'Office Paketi',
+        'sg4-title': 'Diller',
+        'sr-turkish': 'Türkçe (Anadil)',
+        'sr-english': 'İngilizce (B2 / C1)',
+        'sr-spanish': 'İspanyolca (A1)',
+        'sg5-title': 'İş &amp; Satış',
+        'chip-intl-sales': 'Uluslararası Satış',
+        'chip-wholesale': 'Toptan Satış Operasyonları',
+        'chip-exhibition': 'Fuar Yönetimi',
+        'chip-client': 'Müşteri İlişkileri',
+        'chip-sales-mkt': 'Satış &amp; Pazarlama',
+        'chip-entrepreneur': 'Girişimcilik',
+
+        'cert-label': '06 — Sertifikalar',
+        'cert-title': 'Sertifikalar &amp; <span>Eğitimler</span>',
+        'cert1-name': 'Fotovoltaik Güneş Enerjisi Sistemleri Uzmanlığı',
+        'cert2-name': 'AutoCAD 3D Çizim Sertifikası',
+        'cert3-name': 'Geleneksel Girişimcilik Sertifikası',
+
+        'contact-label': '07 — İletişim',
+        'contact-title': 'İletişime <span>Geç</span>',
+        'contact-p': 'Makine mühendisliği uzmanlığını yenilenebilir enerji ve uluslararası iş deneyimiyle birleştiren mühendislik pozisyonları, staj fırsatları ve işbirliklerine şu an açığım. İletişime geçmekten çekinmeyin — hızlıca yanıt veririm.',
+        'contact-card-title': 'Kişisel Bilgiler',
+        'contact-card-sub': 'Ek bilgiler',
+        'info-dob': '<i class="fas fa-birthday-cake"></i> Doğum Tarihi — 27.11.2002',
+        'info-military': '<i class="fas fa-shield-alt"></i> Askerlik — 2031\'e Kadar Tecilli',
+        'info-marital': '<i class="fas fa-heart"></i> Medeni Durum — Bekar',
+        'info-english-lvl': '<i class="fas fa-globe"></i> İngilizce — B2 / İleri',
+        'info-university': '<i class="fas fa-graduation-cap"></i> Trakya Üniversitesi — Makine Müh.',
+        'info-gpa': '<i class="fas fa-star"></i> GPA — 3.00 / 4.00',
+
+        'footer-copy': '© 2026 <span class="footer-accent">Alper Erdoğan</span> — Makine Mühendisi',
+        'footer-sub': 'Hassasiyetle inşa edildi · Mühendislik zihniyetiyle güçlendirildi',
+    };
+
+    const langBtn = document.getElementById('lang-toggle');
+    let currentLang = 'en';
+
+    function applyLang(lang) {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            if (lang === 'tr') {
+                if (!el.dataset.en) el.dataset.en = el.innerHTML;
+                if (trText[key] !== undefined) el.innerHTML = trText[key];
+            } else {
+                if (el.dataset.en !== undefined) el.innerHTML = el.dataset.en;
+            }
+        });
+        langBtn.textContent = lang === 'tr' ? 'EN' : 'TR';
+        document.documentElement.lang = lang;
+    }
+
+    langBtn.addEventListener('click', () => {
+        currentLang = currentLang === 'en' ? 'tr' : 'en';
+        applyLang(currentLang);
     });
 </script>
 
